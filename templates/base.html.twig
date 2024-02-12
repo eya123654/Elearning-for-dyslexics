@@ -46,7 +46,9 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>eLEARNING</h2>
+        <img class="img-fluid" src="{{asset('img/lexi.jpg')}}" height="1820" width="70" alt="">
+        <h2 class="m-0 text-primary">LEXILEARN</h2>
+
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -56,21 +58,17 @@
             <a href="{{ path('app_acceuil') }}" class="nav-item nav-link">Home</a>
             <a href="{{ path('app_about') }}" class="nav-item nav-link">About</a>
             <a href="{{ path('app_courses') }}" class="nav-item nav-link">Courses</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                <div class="dropdown-menu fade-down m-0">
-                    <a href="{{ path('app_team') }}" class="dropdown-item">Our Team</a>
-                    <a href="{{ path('app_testimonial') }}" class="dropdown-item">Testimonial</a>
-                    <a href="{{ path('app_oops') }}" class="dropdown-item">404 Page</a>
+            <a href="{{ path('app_session') }}" class="nav-item nav-link">SESSIONS</a>
+            <a href="{{ path('app_testimonial') }}" class="nav-item nav-link">Testimonial</a>
+              <a href="{{ path('app_contact') }}" class="nav-item nav-link">Contact</a>
                 </div>
             </div>
-            <a href="{{ path('app_contact') }}" class="nav-item nav-link">Contact</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+        <a href="{{path('app_login')}}" class="btn btn-primary ">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
 <!-- Navbar End -->
-
+ 
 {% block body %}
 
 {% endblock %}
@@ -103,22 +101,22 @@
                 <h4 class="text-white mb-3">Gallery</h4>
                 <div class="row g-2 pt-2">
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        <img class="img-fluid bg-light p-1" src="{{asset('img/course-1.jpg')}}" alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                        <img class="img-fluid bg-light p-1" src="{{asset('img/course-2.jpg')}}" alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                        <img class="img-fluid bg-light p-1" src="{{asset('img/course-3.jpg')}}" alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                        <img class="img-fluid bg-light p-1" src="{{asset('img/course-2.jpg')}}" alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                        <img class="img-fluid bg-light p-1" src="{{asset('img/course-3.jpg')}}" alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        <img class="img-fluid bg-light p-1" src="{{asset('img/course-1.jpg')}}" alt="">
                     </div>
                 </div>
             </div>

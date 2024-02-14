@@ -442,7 +442,7 @@
 }
 
 body {
-	background: linear-gradient(90deg, #c5ccf4, #090f81);		
+	background: linear-gradient(90deg, white, rgb(221, 219, 232));		
 }
 
 .container {
@@ -453,11 +453,11 @@ body {
 }
 
 .screen {		
-	background: linear-gradient(90deg, #5497a4, #78a9b8);		
+	background: linear-gradient(90deg, #0c11a1, #140a94);		
 	position: relative;	
 	height: 600px;
 	width: 360px;	
-	box-shadow: 0px 0px 24px #0f1389;
+	box-shadow: 0px 0px 24px #0505bc;
 }
 
 .screen__content {
@@ -503,7 +503,7 @@ body {
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;
-	background: linear-gradient(270deg, #1c0e8a, #191293);
+	background: linear-gradient(270deg, white, #191293);
 	top: -24px;
 	right: 0;	
 	border-radius: 32px;

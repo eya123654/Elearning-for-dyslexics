@@ -146,6 +146,7 @@ h5,
 
 h6,
 .h6 {
+    
     font-size: 1rem
 }
 
@@ -7797,7 +7798,7 @@ fieldset:disabled .btn {
 }
 
 .mb-5 {
-    margin-bottom: 3rem !important
+    margin-bottom: auto !important
 }
 
 .mb-auto {

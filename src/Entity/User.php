@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
@@ -21,8 +22,8 @@ class User
      
     private $cours;
  #[ORM\OneToMany(targetEntity: Reclamation::class, mappedBy:"user")]
-    
-    private $reclamations;
+                                     
+                                     private $reclamations;
 
     
      #[ORM\ManyToMany(targetEntity:Competition::class, inversedBy:"participants")]
@@ -37,6 +38,7 @@ class User
         $this->cours = new ArrayCollection();
         $this->sessions = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
+        $this->reponseReclamations = new ArrayCollection();
 
     }
     public const ROLE_ADMIN = 'admin';
@@ -69,6 +71,9 @@ class User
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_inscription = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ReponseReclamation::class)]
+    private Collection $reponseReclamations;
 
     public function getId(): ?int
     {
@@ -155,6 +160,36 @@ class User
     public function setDateInscription(\DateTimeInterface $date_inscription): static
     {
         $this->date_inscription = $date_inscription;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReponseReclamation>
+     */
+    public function getReponseReclamations(): Collection
+    {
+        return $this->reponseReclamations;
+    }
+
+    public function addReponseReclamation(ReponseReclamation $reponseReclamation): static
+    {
+        if (!$this->reponseReclamations->contains($reponseReclamation)) {
+            $this->reponseReclamations->add($reponseReclamation);
+            $reponseReclamation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponseReclamation(ReponseReclamation $reponseReclamation): static
+    {
+        if ($this->reponseReclamations->removeElement($reponseReclamation)) {
+            // set the owning side to null (unless already changed)
+            if ($reponseReclamation->getUser() === $this) {
+                $reponseReclamation->setUser(null);
+            }
+        }
 
         return $this;
     }

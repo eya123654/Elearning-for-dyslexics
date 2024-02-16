@@ -29,6 +29,9 @@ class Reclamation
     #[ORM\Column(length: 255)]
     private ?string $objet = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Type = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +57,18 @@ class Reclamation
     public function setObjet(string $objet): static
     {
         $this->objet = $objet;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->Type;
+    }
+
+    public function setType(string $Type): static
+    {
+        $this->Type = $Type;
 
         return $this;
     }

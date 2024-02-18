@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
 {
-     #[ORM\ManyToMany(targetEntity:"Quiz", mappedBy:"users")]
+    #[ORM\ManyToMany(targetEntity:"Quiz", mappedBy:"users")]
      
     private $quizzes;
  
@@ -21,9 +21,9 @@ class User
     #[ORM\JoinTable(name:"user_cours")]
      
     private $cours;
- #[ORM\OneToMany(targetEntity: Reclamation::class, mappedBy:"user")]
+    #[ORM\OneToMany(targetEntity: Reclamation::class, mappedBy:"user")]
                                      
-                                     private $reclamations;
+    private $reclamations;
 
     
      #[ORM\ManyToMany(targetEntity:Competition::class, inversedBy:"participants")]
@@ -192,5 +192,38 @@ class User
         }
 
         return $this;
+    }
+     /**
+     * Add a course to the user.
+     *
+     * @param Cours $cours
+     */
+    public function addCours(Cours $cours): void
+    {
+        if (!$this->cours->contains($cours)) {
+            $this->cours->add($cours);
+            $cours->addUser($this); 
+        }
+    }
+
+    /**
+     * Remove a course from the user.
+     *
+     * @param Cours $cours
+     */
+    public function removeCours(Cours $cours): void
+    {
+        $this->cours->removeElement($cours);
+        $cours->removeUser($this); 
+    }
+
+    /**
+     * Get the collection of courses associated with the user.
+     *
+     * @return Collection
+     */
+    public function getCours(): Collection
+    {
+        return $this->cours;
     }
   }

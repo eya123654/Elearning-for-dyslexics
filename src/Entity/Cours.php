@@ -11,13 +11,13 @@ use Doctrine\Common\Collections\Collection;
 class Cours
 {
     
-      #[ORM\ManyToMany(targetEntity:User::class, mappedBy:"cours")]
+    #[ORM\ManyToMany(targetEntity:User::class, mappedBy:"cours")]
      
     private $users;
 
    
-     #[ORM\OneToMany(targetEntity:Lecon::class, mappedBy:"cours")]
-     
+    #[ORM\OneToMany(targetEntity:Lecon::class, mappedBy:"cours")]
+    
     private $lecons;
 
     public function __construct()
@@ -87,5 +87,41 @@ class Cours
         $this->avancement = $avancement;
 
         return $this;
+    }
+    /**
+     * Add a user to the course.
+     *
+     * @param User $user
+     */
+    public function addUser(User $user): void
+    {
+        
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addCours($this);         }
+            else{
+                $user->addCours($this); 
+            }
+    }
+
+    /**
+     * Remove a user from the course.
+     *
+     * @param User $user
+     */
+    public function removeUser(User $user): void
+    {
+        $this->users->removeElement($user);
+        $user->removeCours($this); 
+    }
+
+    /**
+     * Get the collection of users associated with the course.
+     *
+     * @return Collection
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
     }
 }

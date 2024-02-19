@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #f8f9fa; /* Light gray */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        .title {
+            color: #343a40; /* Dark gray */
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6; /* Light gray */
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff; /* Blue */
+            color: #fff; /* White */
+            text-transform: uppercase;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue */
+            color: #fff; /* White */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Dark blue on hover */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="title">Détails de la leçon</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Id</th>
+                    <td>{{ lecon.id }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Titre</th>
+                    <td>{{ lecon.titre }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>{{ lecon.description }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Contenu</th>
+                    <td>{{ lecon.contenu }}</td>
+                </tr>
+                {% if lecon.quiz %}
+                    <tr>
+                        <th scope="row">Quiz</th>
+                        <td>{{ lecon.quiz.titre }}</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <div class="btn-group">
+            <a href="{{ path('app_lecon_index') }}" class="btn btn-info btn-sm m-2">Retour à la liste</a>
+            <a href="{{ path('app_lecon_edit', {'id': lecon.id}) }}" class="btn btn-info btn-sm m-4">Modifier</a>
+            <a class="btn btn-info m-5">{{ include('lecon/_delete_form.html.twig') }}</a>
+        </div>
+        
+    </div>
+{% endblock %}

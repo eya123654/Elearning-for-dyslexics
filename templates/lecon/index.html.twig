@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .table-actions a {
+            margin-right: 5px;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ">
+                <h1 class="page-title m-4">Détail Leçon </h1>
+            </div>
+           
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Contenu</th>
+                            <th scope="col">Quiz</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for lecon in lecons %}
+                        <tr>
+                            <td>{{ lecon.id }}</td>
+                            <td>{{ lecon.titre }}</td>
+                            <td>{{ lecon.description }}</td>
+                            <td>{{ lecon.contenu }}</td>
+                            {% if lecon.quiz %}
+                            <td>{{ lecon.quiz.titre }}</td>
+                            {% else %}
+                            <td>N/A</td>
+                            {% endif %}
+                            <td class="table-actions">
+                                <a href="{{ path('app_lecon_show', {'id': lecon.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                <a href="{{ path('app_lecon_edit', {'id': lecon.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+
+                            </td>
+                        </tr>
+                       
+                    {% else %}
+                    
+                        <tr>
+                            <td colspan="6">No records found</td>
+                        </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+                <div class="col-md-4 text-right">
+                    <a href="{{ path('app_lecon_new') }}" class="btn btn-info btn-sm">Create new</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

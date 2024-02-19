@@ -124,4 +124,8 @@ class Cours
     {
         return $this->users;
     }
+    public function __toString(): string
+    {
+        return $this->nom_cours;
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\Collection;
 
 use App\Repository\QuizRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -64,6 +65,71 @@ class Quiz
     public function setNbrQuestion(int $nbr_question): static
     {
         $this->nbr_question = $nbr_question;
+
+        return $this;
+    }
+    public function getLecon(): ?Lecon
+    {
+        return $this->lecon;
+    }
+
+    public function setLecon(?Lecon $lecon): self
+    {
+        $this->lecon = $lecon;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        if ($this->questions->removeElement($question)) {
+            // set the owning side to null (unless already changed)
+            if ($question->getQuiz() === $this) {
+                $question->setQuiz(null);
+            }
+        }
 
         return $this;
     }

@@ -9,11 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Lecon
 {
        
-      #[ORM\OneToOne(targetEntity:Quiz::class, mappedBy:"lecon")]
+    #[ORM\OneToOne(targetEntity:Quiz::class, mappedBy:"lecon")]
      
     private $quiz;
-      #[ORM\ManyToOne(targetEntity:Cours::class, inversedBy:"lecons")]
-      #[ORM\JoinColumn(nullable:false)]
+
+    #[ORM\ManyToOne(targetEntity:Cours::class, inversedBy:"lecons")]
+    #[ORM\JoinColumn(nullable:false)]
      
     private $cours;
 
@@ -82,4 +83,16 @@ class Lecon
 
         return $this;
     }
+    public function getQuiz(): ?Quiz
+    {
+        return $this->quiz;
+    }
+
+    public function setQuiz(?Quiz $quiz): self
+    {
+        $this->quiz = $quiz;
+
+        return $this;
+    }
+   
 }

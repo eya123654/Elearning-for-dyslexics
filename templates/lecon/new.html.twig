@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseB.html.twig' %}
 
 {% block title %}New Lecon{% endblock %}
 
@@ -50,39 +50,42 @@
     text-decoration: underline;
 }
 </style>
-    <div class="container">
-        <h1 class="title">Create New Lesson</h1>
+<div class="container">
+    <h1 class="title">Create New Lesson</h1>
 
-      
-        {{ form_start(form) }}
-            <div class="form-group">
-                {{ form_row(form.titre , {'label': 'Title'}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.description, {'label': 'Description'}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.contenu, {'label': 'Content'}) }}
-            </div>
-
-           
-            {% if quiz %}
-                <p class="quiz-info">Quiz: {{ quiz.getTitre() }}</p>
-            {% else %}
-                <p class="quiz-info">No quiz associated with this lesson.</p>
-            {% endif %}
-
-            <div class="form-group">
-                {{ form_row(form.quiz, {'label': 'Quiz'}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.cours, {'label': 'Course'}) }}
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="{{ path('app_lecon_index') }}" class="btn btn-primary">Back to List</a>
-        {{ form_end(form) }}
-
-      
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+        {{ form_label(form.titre, 'Titre') }}
+        {{ form_widget(form.titre, {'attr': {'class': 'form-control ' ~ (form.titre.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez le titre de la leçon'}}) }}
+        {{ form_errors(form.titre, {'attr': {'class': 'text-danger'}}) }}
     </div>
+    <div class="form-group">
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control ' ~ (form.description.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez la description de la leçon'}}) }}
+        {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.contenu, 'Contenu') }}
+        {{ form_widget(form.contenu, {'attr': {'class': 'form-control ' ~ (form.contenu.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez le contenu de la leçon'}}) }}
+        {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    {% if quiz %}
+        <p class="quiz-info">Quiz: {{ quiz.getTitre() }}</p>
+    {% else %}
+        <p class="quiz-info">No quiz associated with this lesson.</p>
+    {% endif %}
+
+    <div class="form-group">
+        {{ form_row(form.quiz, {'label': 'Quiz'}) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.cours, {'label': 'Course'}) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{ path('app_lecon_index') }}" class="btn btn-primary">Back to List</a>
+    {{ form_end(form) }}
+
+</div>
 {% endblock %}

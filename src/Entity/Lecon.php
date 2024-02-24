@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LeconRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LeconRepository::class)]
 class Lecon
@@ -34,13 +35,25 @@ class Lecon
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+     
+    #[ORM\Column(length:255)]
+    #[Assert\NotBlank(message:"Le titre de la leçon ne peut pas être vide.")]
+    #[Assert\Length(max:255, maxMessage:"Le titre de la leçon ne peut pas dépasser {{ limit }} caractères.")]
+   
     private ?string $titre = null;
 
-    #[ORM\Column(length: 255)]
+   
+    #[ORM\Column(length:255)]
+    #[Assert\NotBlank(message:"La description de la leçon ne peut pas être vide.")]
+    #[Assert\Length(max:255, maxMessage:"La description de la leçon ne peut pas dépasser {{ limit }} caractères.")]
+   
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+   
+    #[ORM\Column(length:255)]
+    #[Assert\NotBlank(message:"Le contenu de la leçon ne peut pas être vide.")]
+    #[Assert\Length(max:255, maxMessage:"Le contenu de la leçon ne peut pas dépasser {{ limit }} caractères.")]
+   
     private ?string $contenu = null;
 
     public function getId(): ?int

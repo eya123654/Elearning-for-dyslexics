@@ -29,7 +29,7 @@ class LeconController extends AbstractController
         $form = $this->createForm(LeconType::class, $lecon);
         $form->handleRequest($request);
     
-        // Récupérer le quiz associé à la nouvelle leçon
+       
         $quiz = $lecon->getQuiz();  // Si la leçon n'a pas encore de quiz associé, $quiz sera null
          
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,7 +45,7 @@ class LeconController extends AbstractController
         return $this->renderForm('lecon/new.html.twig', [
             'lecon' => $lecon,
             'form' => $form,
-            'quiz' => $quiz, // Passer le quiz associé au formulaire
+            'quiz' => $quiz, 
         ]);
     }
     

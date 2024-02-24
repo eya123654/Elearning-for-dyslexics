@@ -6,6 +6,7 @@ use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 class Cours
@@ -39,13 +40,26 @@ class Cours
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+     
+     #[ORM\Column(length:255)]
+     #[Assert\NotBlank(message:"Le nom du cours ne peut pas être vide.")]
+     #[Assert\Length(max:255, maxMessage:"Le nom du cours ne peut pas dépasser {{ limit }} caractères.")]
+     
     private ?string $nom_cours = null;
 
-    #[ORM\Column(length: 255)]
+    
+    #[ORM\Column(length:255)]
+    #[Assert\NotBlank(message:"La description du cours ne peut pas être vide.")]
+    #[Assert\Length(max:255, maxMessage:"La description du cours ne peut pas dépasser {{ limit }} caractères.")]
+    
     private ?string $description = null;
 
+    
     #[ORM\Column]
+    #[Assert\NotNull(message:"L'avancement du cours doit être spécifié.")]
+    #[Assert\Type(type:"integer", message:"L'avancement du cours doit être un entier.")]
+    #[Assert\Range(min:0, max:100, minMessage:"L'avancement du cours ne peut pas être inférieur à {{ limit }}.", maxMessage:"L'avancement du cours ne peut pas être supérieur à {{ limit }}.")]
+    
     private ?int $avancement = null;
 
     public function getId(): ?int

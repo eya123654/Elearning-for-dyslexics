@@ -12,7 +12,7 @@ class sessionController extends AbstractController
     public function index(): Response
     {
         return $this->render('session/index.html.twig', [
-            'controller_name' => 'sessionController',
+            'controller_name' => 'AboutController',
         ]);
     }
 }

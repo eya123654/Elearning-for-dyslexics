@@ -2,12 +2,12 @@
 
 {% block title %}Edit Cours{% endblock %}
 
-{% block body %}
-    <h1>Edit Cours</h1>
+{% block content %}
+    <h1></h1>
 
     {{ include('cl_back/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_cours_index') }}">back to list</a>
+   <div class="row "> <a href="{{ path('app_c_back') }}" class="btn btn-secondary mr-3 mt-4"> <img src="{{asset('back/img/back.svg')}}"style="width: 1.5rem; height: 1.5rem;"> Back to List</a>
 
-    {{ include('cl_back/_delete_form.html.twig') }}
+    {{ include('cl_back/_delete_form.html.twig') }}</div>
 {% endblock %}

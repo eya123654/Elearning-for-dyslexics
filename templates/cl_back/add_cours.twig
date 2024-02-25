@@ -1,29 +1,47 @@
-{% extends 'BaseB.html.twig'%}
-{% block title %}{% endblock %}
+{% extends 'BaseB.html.twig' %}
+
+{% block title %}
+    New Course
+{% endblock %}
 
 {% block content %}
-{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">New Course         <img src="{{asset('back/img/add.svg')}}"style="width: 2rem; height: 2rem;">
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-<div class="mb-3">
-    {{ form_label(form.nom_cours, 'Nom du cours') }}
-    {{ form_widget(form.nom_cours, {'attr': {'class': 'form-control ' ~ (form.nom_cours.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez le nom du cours'}}) }}
-    {{ form_errors(form.nom_cours, {'attr': {'class': 'text-danger'}}) }}
+                    <div class="form-group">
+                        {{ form_label(form.nom_cours, 'Cours Name', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                        {{ form_widget(form.nom_cours, {'attr': {'class': 'form-control ' ~ (form.nom_cours.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Enter cours name'}}) }}
+                        {{ form_errors(form.nom_cours, {'attr': {'class': 'invalid-feedback'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.description, 'Description', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control ' ~ (form.description.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Enter  description '}}) }}
+                        {{ form_errors(form.description, {'attr': {'class': 'invalid-feedback'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.avancement, 'Progress', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                        {{ form_widget(form.avancement, {'attr': {'class': 'form-control ' ~ (form.avancement.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Enter progress'}}) }}
+                        {{ form_errors(form.avancement, {'attr': {'class': 'invalid-feedback'}}) }}
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">{{ button_label|default('Save') }}  <img src="{{asset('back/img/save.svg')}}"style="width: 2rem; height: 2rem;"></button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="mb-3">
-    {{ form_label(form.description, 'Description') }}
-    {{ form_widget(form.description, {'attr': {'class': 'form-control ' ~ (form.description.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez la description du cours'}}) }}
-    {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
-</div>
-
-<div class="mb-3">
-    {{ form_label(form.avancement, 'Avancement') }}
-    {{ form_widget(form.avancement, {'attr': {'class': 'form-control ' ~ (form.avancement.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez l\'avancement du cours'}}) }}
-    {{ form_errors(form.avancement, {'attr': {'class': 'text-danger'}}) }}
-</div>
-
-<button class="btn btn-success">{{ button_label|default('Save') }}</button>
-
-{{ form_end(form) }}
-
 {% endblock %}

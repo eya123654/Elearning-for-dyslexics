@@ -51,7 +51,7 @@ class CLBackController extends AbstractController
 
  
 
-    #[Route('/{id}', name: 'app_cours_show', methods: ['GET'])]
+    #[Route('show/{id}', name: 'app_cours_shows', methods: ['GET'])]
     public function show(Cours $cour, UserRepository $userRepository): Response
     { 
        # dd( $cour->getUsers());
@@ -62,7 +62,7 @@ class CLBackController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_cours_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/update', name: 'app_cours_edits', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cours $cour, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CoursType::class, $cour);
@@ -71,7 +71,7 @@ class CLBackController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_c_back', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('cl_back/edit.html.twig', [
@@ -80,7 +80,7 @@ class CLBackController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_cours_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_cours_deletes', methods: ['POST'])]
     public function delete(Request $request, Cours $cour, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$cour->getId(), $request->request->get('_token'))) {
@@ -88,7 +88,7 @@ class CLBackController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_c_back', [], Response::HTTP_SEE_OTHER);
     }
 
 

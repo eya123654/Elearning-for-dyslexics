@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>LexiLearn Dashboard</title>
+    
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('back/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -51,98 +52,135 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Gesion User </span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="{{path('app_user_b')}}">User</a>
-                        <a class="collapse-item" href="{{path('app_coach_b')}}">Coach</a>
-                    </div>
-                </div>
-            </li>
+               <!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="{{path('app_add_user')}}" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <div class="d-flex align-items-center">
+            <div class="icon-circle bg-primary mr-2">
+                <img src="{{asset("back/img/user_icon.png")}}" class="img-fluid">
+            </div>
+            <span class="font-weight-bold">User managment </span>
+        </div>
+    </a>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-graduation-cap"></i>
-                    <span>Gesion sessions-formations</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="{{path('list_session')}}">session</a>
-                        <a class="collapse-item" href="{{path('listformation')}}">formations</a>
-                    </div>
-                </div>
-            </li>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Components:</h6>
+            <a class="collapse-item" href="{{path('app_user_b')}}">User</a>
+            <a class="collapse-item" href="{{path('app_coach_b')}}">Coach</a>
+        </div>
+    </div>
+</li>
 
-           
+        <li class="nav-item">
+    <a class="nav-link" href="{{path('app_add_user')}}" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <div class="d-flex align-items-center">
+      
+        <div class="icon-circle bg-primary mr-2">
+            <img src="{{asset("back/img/session_icon.png")}}" class="img-fluid">
+        </div>
+        <span>Sessions</span>
+        </div>
+    </a>
 
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="{{path('list_session')}}">session</a>
+            <a class="collapse-item" href="{{path('listformation')}}">formations</a>
+        </div>
+    </div>
+</li>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>Gestion cours  lessons </span>
+                      <div class="d-flex align-items-center">   
+                       <div class="icon-circle bg-primary mr-2">
+            <img src="{{asset("back/img/Books-256.png")}}" class="img-fluid">
+
+                </div> 
+                    <span>Courses </span>
+                    </div>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{path('app_c_back')}}">Cours</a>
-                        <a class="collapse-item" href="{{path('app_L_back')}}">Lessons</a>
+                        <a class="collapse-item" href="{{path('app_c_back')}}"> Courses </a>
+                        <a class="collapse-item" href="{{path('app_L_back')}}"> Lessons</a>
                     </div>
                 </div>
             </li>
-    
 
             <!-- Nav Item - Charts -->
            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-trophy"></i>
-                    <span>Gestion Competitions</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                     <div class="d-flex align-items-center">   
+                       <div class="icon-circle bg-primary mr-2">
+            <img src="{{asset("back/img/competition.png")}}" class="img-fluid">
+
+                </div> 
+                    <span>Competitions</span>
+                      </div> 
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{path('app_compet')}}">Competitions</a>
-                        <a class="collapse-item" href="{{path('app_activ')}}">Activités</a>
+                        <a class="collapse-item" href="{{path('app_compet')}}"> Competitions </a>
+                        <a class="collapse-item" href="{{path('app_activ')}}"> Activities </a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-question-circle"></i>
-                    <span>Gestion Quiz</span>
+                   <div class="d-flex align-items-center">   
+                       <div class="icon-circle bg-primary mr-2">
+            <img src="{{asset("back/img/Quiz.png")}}" class="img-fluid">
+
+                </div> 
+                    <span>Quizzes</span>
+                    </div> 
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ path('quiz_b')}}">Quiz</a>
-                        <a class="collapse-item" href="{{ path('quest_b')}}">Question</a>
+                        <a class="collapse-item" href="{{ path('quest_b')}}">Questions</a>
                     </div>
                 </div>
             </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="{{path('app_reclamation')}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Reclamation</span></a>
+                 <div class="d-flex align-items-center">   
+                       <div class="icon-circle bg-primary mr-2">
+            <img src="{{asset("back/img/messages.png")}}" class="img-fluid">
+
+                </div> 
+                    <span>Complaints </span></a>
+                    </div>
             </li>
+<!-- Divider -->
+<hr class="sidebar-divider">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+<!-- Settings -->
+<li class="nav-item">
+    <a class="nav-link" href="#">
+        <div class="d-flex align-items-center">
+            <img src="{{ asset('back/img/settings.png') }}" class="mr-2" style="width: 16px; height: 16px;"> <!-- Adjust width and height as needed -->
+            <span>Settings</span>
+        </div>
+    </a>
+</li>
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+<!-- Log out -->
+<li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+        <div class="d-flex align-items-center">
+            <img src="{{ asset('back/img/Log_out.png') }}" class="mr-2" style="width: 16px; height: 16px;"> <!-- Adjust width and height as needed -->
+            <span>Log out</span>
+        </div>
+    </a>
+</li>
+       
 
             <!-- Sidebar Message -->
         
@@ -165,35 +203,46 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+            <form class="form-inline">
+    <div class="input-group">
+        <label for="searchInput" class="sr-only">Search</label>
+        <input type="text" id="searchInput" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="searchButton">
+        <div class="input-group-append">
+            <button class="btn btn-primary btn-search" type="button" id="searchButton">
+                <i class="fas fa-search fa-lg"></i>
+                Search
+            </button>
+        </div>
+    </div>
+</form>
+
+
 
                     <!-- Topbar Navbar -->
                    
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                     <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('back/img/undraw_profile.svg')}}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            
-                        </li>
+<!-- Nav Item - User Information -->
+<li class="nav-item dropdown no-arrow">
+    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2 d-none d-lg-inline text-gray-600 small">USER </span>
+        <img class="img-profile rounded-circle"
+            src="{{ asset('back/img/undraw_profile.svg') }}">
+    </a>
+    <!-- Dropdown - User Information -->
+    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="#">
+            <i class="fas fa-envelope fa-sm fa-fw mr-2 text-gray-400"></i>
+            Messages
+        </a>
+        <a class="dropdown-item" href="#">
+            <i class="fas fa-bell fa-sm fa-fw mr-2 text-gray-400"></i>
+            Notifications
+        </a>
+    </div>
+</li>
 
                     </ul>
 

@@ -1,0 +1,52 @@
+{% extends 'baseB.html.twig' %}
+{% block title %}{% endblock %}
+
+    {% block content %}
+
+<body>
+  
+    <center>
+<h1>liste des session </h1>
+</center>
+
+   <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Date_debut</th>
+      <th scope="col">Date_fin</th>
+      <th scope="col">Nom_session</th>
+      <th>Formations</th>
+      <th> Action</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+  {% for session in sessions %}
+    <tr>
+      <th scope="row">{{session.getId()}}</th>
+      <th>{{session.getDateD()}}</th>
+      <th>{{session.getDateF()}}</th>
+       <th>{{session.getNomSession()}}</th>
+        <td>
+              {% for formation in session.getFormations() %}
+                {{ formation.nom }}<br>
+                 {{ formation.description }}<br>
+              {% endfor %}
+            </td>
+       <td>
+         <a href="{{ path('app_update', {'id': session.getId()}) }}" class="dt-button btn btn-primary waves-effect waves-light text-white" tabindex="0" aria-controls="DataTables_Table_0" type="button">Edit</a> 
+        <a href="{{ path('app_delete', {'id': session.getId()}) }}" class="dt-button btn btn-primary waves-effect waves-light text-white" tabindex="0" aria-controls="DataTables_Table_0" type="button">Delete</a>
+      </td>
+    </tr>
+
+   {% endfor %}
+  </tbody>
+</table>
+
+
+</body>
+   {% endblock %}
+ 
+   
+

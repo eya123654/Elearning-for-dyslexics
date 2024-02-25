@@ -1,0 +1,29 @@
+{% extends 'BaseB.html.twig'%}
+{% block title %}{% endblock %}
+
+{% block content %}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<div class="mb-3">
+    {{ form_label(form.nom_cours, 'Nom du cours') }}
+    {{ form_widget(form.nom_cours, {'attr': {'class': 'form-control ' ~ (form.nom_cours.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez le nom du cours'}}) }}
+    {{ form_errors(form.nom_cours, {'attr': {'class': 'text-danger'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.description, 'Description') }}
+    {{ form_widget(form.description, {'attr': {'class': 'form-control ' ~ (form.description.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez la description du cours'}}) }}
+    {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.avancement, 'Avancement') }}
+    {{ form_widget(form.avancement, {'attr': {'class': 'form-control ' ~ (form.avancement.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Entrez l\'avancement du cours'}}) }}
+    {{ form_errors(form.avancement, {'attr': {'class': 'text-danger'}}) }}
+</div>
+
+<button class="btn btn-success">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}
+
+{% endblock %}

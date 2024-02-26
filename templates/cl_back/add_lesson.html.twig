@@ -1,0 +1,84 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}New Lesson{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f8fa; /* Light blue-gray */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    }
+
+    .title {
+        color: #3498db; /* Blue */
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #3498db; /* Blue */
+        color: #fff; /* White */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9; /* Dark blue on hover */
+    }
+
+    .back-link {
+        color: #3498db; /* Blue */
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Fix for dropdown */
+    .form-group select.form-control {
+        width: 100%;
+    }
+</style>
+<div class="container">
+    <h1 class="title">Create New Lesson</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+        {{ form_label(form.titre, 'Title') }}
+        {{ form_widget(form.titre, {'attr': {'class': 'form-control ' ~ (form.titre.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Enter Title'}}) }}
+        {{ form_errors(form.titre, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control ' ~ (form.description.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Enter Description'}}) }}
+        {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.contenu, 'Content') }}
+        {{ form_widget(form.contenu, {'attr': {'class': 'form-control ' ~ (form.contenu.vars.errors|length > 0 ? 'is-invalid' : ''), 'placeholder': 'Enter Content'}}) }}
+        {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.cours, {'label': 'Course', 'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary mr-3 mt-4">Submit  <img src="{{asset('back/img/save.svg')}}"style="width: 2rem; height: 2rem;"></button>
+    <a href="{{ path('app_L_back') }}" class="btn btn-secondary mr-3 mt-4">Back to List  <img src="{{asset('back/img/back.svg')}}"style="width: 2rem; height: 2rem;"></a>
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

@@ -16,10 +16,10 @@ class LeconType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('contenu')
-            ->add('quiz', EntityType::class, [
-                'class' => 'App\Entity\Quiz',
-                'choice_label' => 'titre', 
-            ])
+            // ->add('quiz', EntityType::class, [
+            //     'class' => 'App\Entity\Quiz',
+            //     'choice_label' => 'titre', 
+            // ])
             ->add('cours')
         ;
     }

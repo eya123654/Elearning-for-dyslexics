@@ -1,0 +1,39 @@
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Edit Cours <img src="{{asset('back/img/update.svg')}}"style="width: 2rem; height: 2rem;"></h3>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.titre, 'Lesson name', {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.titre, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.description, 'Description', {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.contenu, 'content', {'label_attr': {'class': 'control-label'}}) }}
+                        {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.cours, {'label': 'Course', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary justify-content-center">{{ button_label|default('Save')  }}<img src="{{asset('back/img/save.svg')}}"style="width: 2rem; height: 2rem;" class="ml-2 items-center"></button>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

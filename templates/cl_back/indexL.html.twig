@@ -1,0 +1,75 @@
+{% extends 'baseB.html.twig' %}
+
+{% block title %}Leçon index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .table-actions a {
+            margin-right: 5px;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-8 row justify-content-between  ">
+                <h1 class="page-title m-4">Lessons Details</h1>
+                <div class="col-md-4 text-right">
+                    <a href="{{ path('app_lesson_news') }}" class="btn btn-info btn-sm mt-5 ">Create new   <img src="{{asset('back/img/add.svg')}}"style="width: 1.5rem; height: 1.5rem;"></a>
+                </div>
+            </div>
+           
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-primary">
+                        <tr class="text-white">
+                            <th scope="col">Id</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Quiz</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for lecon in lecons %}
+                        <tr>
+                            <td>{{ lecon.id }}</td>
+                            <td>{{ lecon.titre }}</td>
+                            <td>{{ lecon.description }}</td>
+                            <td>{{ lecon.contenu }}</td>
+                            {% if lecon.quiz %}
+                            <td>{{ lecon.quiz.titre }}</td>
+                            {% else %}
+                            <td>N/A</td>
+                            {% endif %}
+                            <td class="table-actions">
+                                <a href="{{ path('app_lecon_shows', {'id': lecon.id}) }}" class="btn btn-info btn-sm mr-0.5">Show<img src="{{asset('back/img/view.svg')}}"style="width: 1rem; height: 1rem;" > </a>
+                                <a href="{{ path('app_lesson_edit', {'id': lecon.id}) }}" class="btn btn-primary btn-sm">Edit <img src="{{asset('back/img/update.svg')}}"style="width: 1rem; height: 1rem;" ></a>
+
+                            </td>
+                        </tr>
+                       
+                    {% else %}
+                    
+                        <tr>
+                            <td colspan="6">No records found</td>
+                        </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

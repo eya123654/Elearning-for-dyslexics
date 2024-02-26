@@ -1,0 +1,14 @@
+
+{% extends 'BaseB.html.twig' %}
+
+{% block title %}Edit lesson{% endblock %}
+
+{% block content %}
+    <h1></h1>
+
+    {{ include('cl_back/_formL.html.twig', {'button_label': 'Update'}) }}
+
+   <div class="row "> <a href="{{ path('app_L_back') }}" class="btn btn-secondary mr-3 mt-4"> <img src="{{asset('back/img/back.svg')}}"style="width: 1.5rem; height: 1.5rem;"> Back to List</a>
+
+    {{ include('cl_back/_deleteL_form.html.twig') }}</div>
+{% endblock %}

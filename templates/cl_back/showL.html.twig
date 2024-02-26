@@ -1,0 +1,40 @@
+
+{% extends 'baseB.html.twig' %}
+
+{% block title %}Course Details{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title mb-0">Course Details     <img src="{{asset('back/img/show.svg')}}"style="width: 2.5rem; height: 2.5rem;"></h3>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4">ID</dt>
+                            <dd class="col-sm-8">{{ lecon.id }}</dd>
+
+                            <dt class="col-sm-4">Cours Name</dt>
+                            <dd class="col-sm-8">{{ lecon.titre }}</dd>
+
+                            <dt class="col-sm-4">Description</dt>
+                            <dd class="col-sm-8">{{ lecon.description }}</dd>
+
+                            <dt class="col-sm-4">Progress</dt>
+                            <dd class="col-sm-8">{{ lecon.contenu }}</dd>
+
+                            
+                        </dl>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ path('app_L_back') }}" class="btn btn-secondary mr-3"> <img src="{{asset('back/img/back.svg')}}"style="width: 1.5rem; height: 1.5rem;"> Back to List</a>
+                        <a href="{{ path('app_lesson_edit', {'id': lecon.id}) }}" class="btn btn-primary mr-3">    Edit <img src="{{asset('back/img/update.svg')}}"style="width: 1.5rem; height: 1.5rem;"></a>
+                        {{ include('cl_back/_deleteL_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

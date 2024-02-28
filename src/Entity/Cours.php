@@ -62,6 +62,12 @@ class Cours
     
     private ?int $avancement = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $price = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,44 +108,28 @@ class Cours
 
         return $this;
     }
-    /**
-     * Add a user to the course.
-     *
-     * @param User $user
-     */
-    public function addUser(User $user): void
+
+    public function getImage(): ?string
     {
-        
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addCours($this);         }
-            else{
-                $user->addCours($this); 
-            }
+        return $this->image;
     }
 
-    /**
-     * Remove a user from the course.
-     *
-     * @param User $user
-     */
-    public function removeUser(User $user): void
+    public function setImage(string $image): static
     {
-        $this->users->removeElement($user);
-        $user->removeCours($this); 
+        $this->image = $image;
+
+        return $this;
     }
 
-    /**
-     * Get the collection of users associated with the course.
-     *
-     * @return Collection
-     */
-    public function getUsers(): Collection
+    public function getPrice(): ?string
     {
-        return $this->users;
+        return $this->price;
     }
-    public function __toString(): string
+
+    public function setPrice(string $price): static
     {
-        return $this->nom_cours;
+        $this->price = $price;
+
+        return $this;
     }
 }

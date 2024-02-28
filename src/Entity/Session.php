@@ -2,17 +2,18 @@
 
 namespace App\Entity;
 use App\Repository\SessionRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
 {
     
     #[ORM\ManyToMany(targetEntity:"User", inversedBy:"sessions")]
     #[ORM\JoinTable(name:"user_session")]
-     
+    
     private $users;
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,11 +27,12 @@ class Session
     private ?string $date_f = null;
 
     #[ORM\Column(length: 255)]
+    
     private ?string $nom = null;
 
     
-      #[ORM\ManyToMany(targetEntity: Formation::class, inversedBy: "sessions")]
-      #[ORM\JoinTable(name: "session_formation")]
+    #[ORM\ManyToMany(targetEntity: Formation::class, inversedBy: "sessions")]
+    #[ORM\JoinTable(name: "session_formation")]
      
     private $formations;
 
@@ -48,31 +50,38 @@ class Session
         return $this->formations;
     }
 
+    public function addFormation(Formation $formation): self
+    {
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
+        }
 
+        return $this;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateD(): ?string
+    public function getDateD(): ?String
     {
         return $this->date_d;
     }
 
-    public function setDateD(string $date_d): self
+    public function setDateD(String $date_d): self
     {
         $this->date_d = $date_d;
 
         return $this;
     }
 
-    public function getDateF(): ?string
+    public function getDateF(): ?String
     {
         return $this->date_f;
     }
 
-    public function setDateF(string $date_f): self
+    public function setDateF(String $date_f): self
     {
         $this->date_f = $date_f;
 

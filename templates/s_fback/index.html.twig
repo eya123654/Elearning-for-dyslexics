@@ -1,0 +1,45 @@
+{% extends 'BaseB.html.twig' %}
+
+
+{% block content %}
+
+<body>
+
+ <center>
+<h1>liste des formations </h1>
+</center>
+
+   <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">nom</th>
+      <th scope="col">Description</th>
+      <th scope="col">thematique</th>
+      <th scope="col">nbre_participant</th>
+      <th scope="col">niveau</th>
+      <th> Action</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+  {% for formation in formations %}
+    <tr>
+      <th scope="row">{{formation.getId()}}</th>
+      <td>{{formation.getNom()}}</td>
+      <td>{{formation.getDescription()}}</td>
+      <td>{{formation.getThematique()}}</td>
+        <td>{{formation.getNbrParticipant()}}</td>
+        <td>{{formation.getNiveau()}}</td>
+       <td>
+         <a href="{{ path('app_update', {'id': formation.getId()}) }}" class="dt-button btn btn-primary waves-effect waves-light text-white" tabindex="0" aria-controls="DataTables_Table_0" type="button">Edit</a> 
+        <a href="{{ path('app_delete', {'id': formation.getId()}) }}" class="dt-button btn btn-primary waves-effect waves-light text-white" tabindex="0" aria-controls="DataTables_Table_0" type="button">Delete</a>
+
+    </tr>
+
+   {% endfor %}
+  </tbody>
+</table>
+</body>
+    {% endblock %}
+

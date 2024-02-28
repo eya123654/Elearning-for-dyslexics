@@ -50,16 +50,16 @@ class CoursController extends AbstractController
     
     
 
-    #[Route('/{id}', name: 'app_cours_show', methods: ['GET'])]
-    public function show(Cours $cour, UserRepository $userRepository): Response
-    { 
-       # dd( $cour->getUsers());
-      #  $users = $userRepository->getUsers($cour); 
-        return $this->render('cours/show.html.twig', [
-            'cour' => $cour,
-            'users' => $cour->getUsers(),
-        ]);
-    }
+    // #[Route('/{id}', name: 'app_cours_show', methods: ['GET'])]
+    // public function show(Cours $cour, UserRepository $userRepository): Response
+    // { 
+    //    # dd( $cour->getUsers());
+    //   #  $users = $userRepository->getUsers($cour); 
+    //     return $this->render('cours/show.html.twig', [
+    //         'cour' => $cour,
+    //         'users' => $cour->getUsers(),
+    //     ]);
+    // }
 
     #[Route('/{id}/edit', name: 'app_cours_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cours $cour, EntityManagerInterface $entityManager): Response

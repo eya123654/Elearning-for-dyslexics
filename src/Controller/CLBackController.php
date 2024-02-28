@@ -83,7 +83,7 @@ class CLBackController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_cours_deletes', methods: ['POST'])]
+    #[Route('/{id}/deleted', name: 'app_cours_deletes', methods: ['POST'])]
     public function delete(Request $request, Cours $cour, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$cour->getId(), $request->request->get('_token'))) {

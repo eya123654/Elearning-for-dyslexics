@@ -48,6 +48,12 @@ class Cours
     #[ORM\Column]
     private ?int $avancement = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $price = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +91,30 @@ class Cours
     public function setAvancement(int $avancement): static
     {
         $this->avancement = $avancement;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

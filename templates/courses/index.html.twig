@@ -1,70 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CoursesController!{% endblock %}
+{% block title %}Courses Categories{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+{% endblock %}
 
 {% block body %}
-    <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
-     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Categories</h6>
-                <h1 class="mb-5">Courses Categories</h1>
-            </div>
-     <div class="container">
-            <div class="row g-3">
-                <div class="col-lg-7 col-md-6">
-                    <div class="row g-3">
-                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                            <a class="position-relative d-block overflow-hidden" href="{{ path('app_cours_details') }}">
-                                <img class="img-fluid" src="{{ asset('img/speaker_3.jpg')}}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Maitrisez l'art de parler en public  </h5>
-                                    <small class="text-primary">20 Courses</small>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('img/test.jpg')}}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Développer une Confiance en Soi Inébranlable</h5>
-                                    <small class="text-primary">20 Courses</small>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('img/stresse.jpg')}}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Maîtriser la Gestion du Stress</h5>
-                                    <small class="text-primary">15 Courses</small>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+
+<div class="text-center wow fadeInUp mt-5" data-wow-delay="0.1s">
+    <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+    <h1 class="mb-5">Explore Our Courses</h1>
+</div>
+
+<div class="container py-5">
+   
+    
+    <div class="row justify-content-center">
+        {% for course in pagination %}
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm">
+                <img src="{{ asset('img/test.jpg')}}" class="card-img-top" alt="{{ course.nomCours }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.nomCours }}</h5>
+                    <p class="card-text text-muted">{{ course.description|slice(0, 90)  }}...</p>
                 </div>
-                <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                    <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('img/pro.jpg')}}" alt="" style="object-fit: cover;">
-                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                            <h5 class="m-0">Améliorer votre pronociation</h5>
-                            <small class="text-primary">20 Courses</small>
-                        </div>
-                    </a>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ path('app_cours_details', {'id': course.id}) }}" class="btn btn-primary btn-sm">View Details</a>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    <!-- Categories Start -->
-
-
-    <!-- Courses Start -->
    
-    <!-- Courses End -->
-
-
-    <!-- Testimonial Start -->
-   
-    <!-- Testimonial End -->
-
-
+</div>
+ 
+    {# Pagination controls #}
+    <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if currentPage > 1 %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path('app_courses', {'page': currentPage - 1}) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            
+            {% for page in 1..totalPages %}
+            <li class="page-item {% if page == currentPage %}active{% endif %}">
+                <a class="page-link" href="{{ path('app_courses', {'page': page}) }}">{{ page }}</a>
+            </li>
+            {% endfor %}
+            
+            {% if currentPage < totalPages %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path('app_courses', {'page': currentPage + 1}) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 {% endblock %}

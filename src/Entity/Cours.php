@@ -132,4 +132,45 @@ class Cours
 
         return $this;
     }
+      /**
+     * Add a user to the course.
+     *
+     * @param User $user
+     */
+    public function addUser(User $user): void
+    {
+        
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addCours($this);         }
+            else{
+                $user->addCours($this); 
+            }
+    }
+
+    /**
+     * Remove a user from the course.
+     *
+     * @param User $user
+     */
+    public function removeUser(User $user): void
+    {
+        $this->users->removeElement($user);
+        $user->removeCours($this); 
+    }
+
+    /**
+     * Get the collection of users associated with the course.
+     *
+     * @return Collection
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+    public function __toString(): string
+    {
+        return $this->nom_cours;
+    }
+    
 }

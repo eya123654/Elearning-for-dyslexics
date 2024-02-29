@@ -3,6 +3,145 @@
 {% block title %}Course Detail{% endblock %}
 
 {% block body %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+	line-height: 1.5;
+	min-height: 100vh;
+	padding: 5rem 0;
+	font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
+
+section {
+	width: 90%;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	
+	& + section {
+		margin-top: 2.5em;
+	}
+}
+
+h1 {
+	font-weight: 700;
+	line-height: 1.125;
+	font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+h2 {
+	margin-top: .25em;
+	color: #999;
+	font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+	& + * {
+		margin-top: 1.5em;
+	}
+}
+
+
+
+summary {
+	background-color: #fff;
+	position: relative;
+	cursor: pointer;
+	padding: 1em .5em;
+	list-style: none; // Remove arrow
+	&::-webkit-details-marker {
+		display: none; // Remove arrow
+	}
+	
+	&:hover {
+		background-color: #f2f5f9;
+	}
+
+	
+	div {
+		display: flex;
+		align-items: center;
+	}
+	
+	h3 {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	small {
+		color: #999;
+		font-size: .875em;
+	}
+	
+	strong {
+		font-weight: 700;
+	}
+	
+	span:first-child {
+		width: 4rem;
+		height: 4rem;
+		border-radius: 10px;
+		background-color: #f3e1e1; 
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		margin-right: 1.25em;
+		svg {
+			width: 2.25rem;
+			height: 2.25rem;
+		}
+	}
+	
+	span:last-child {
+		font-weight: 700;
+		margin-left: auto;
+	}
+	
+	&:focus {
+		outline: none;
+	}
+	
+	.plus {
+		color: #289672;
+	}
+}
+
+details {
+	border-bottom: 1px solid #b5bfd9;
+	&[open] {
+		box-shadow: -3px 0 0 #b5bfd9;
+	}
+	
+	&:first-of-type {
+		border-top: 1px solid #b5bfd9;
+	}
+	& > div {
+		padding: 2em 2em 0;
+		font-size: .875em;
+	}
+}
+
+dl {
+	display: flex;
+	flex-wrap: wrap;
+	dt {
+		font-weight: 700;
+	}
+	div {
+		margin-right: 4em;
+		margin-bottom: 2em;
+	}
+}
+</style>
 
 <!-- Header Start -->
 <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom">
@@ -24,34 +163,70 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="mb-5">
-                <div class="section-title position-relative mb-5">
-                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course Detail</h6>
-                    <h1 class="display-4">Web Design & Development Courses for Beginners</h1>
+                <div class="section-title position-relative mb-5" >
+                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2 pt-5">Course Detail</h6>
+                    <h1 class="display-4">{{course.nomCours}}</h1>
                 </div>
-                <img class="img-fluid rounded w-100 mb-4" src="{{asset('img/public speak.jpg')}}" alt="Course Image">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et aliquam justo. Cras vestibulum tincidunt ex, vel consequat lorem consequat id. Integer sit amet elit ullamcorper, varius dolor vitae, condimentum libero.</p>
-                <p>Sed id aliquam lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc nec magna ut ipsum sagittis pretium. Sed eleifend arcu vitae est volutpat viverra.</p>
+                <img class="img-fluid rounded w-100 mb-4" src="{{asset('img/public speak.jpg')}}"  alt="Course Image">
             </div>
-            <div class="container">
+            <!-- nav tabs -->
+
+            <div class="">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" style="width: 33.33%;">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Accueil</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overview</a>
                     </li>
                     <li class="nav-item" style="width: 33.33%;">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profil</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Lessons</a>
                     </li>
                     <li class="nav-item" style="width: 33.33%;">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Coach</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="container">
-                            Contenu de l'accueil
+                        <div class="pt-5">
+                            <p>{{course.description}}</p>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="container">
+                        <div class="pt-5 ">
+                            <!-- lessons -->
+                            <section>
+                                <h1>Lesson's List</h1>
+                                <h2>Today</h2>
+                                {% for lesson in lessons %}
+                                <details>
+                                    <summary>
+                                        <div class="row">
+                                            <h3 >
+                                                <img src="{{asset('img/books.svg')}}" style="width:3rem; height:"3rem"/>
+                                                <strong>{{ lesson.titre }}</strong>
+                                                <small></small>
+                                            </h3>
+                                            <span> </span>
+                                        </div>
+                                    </summary>
+                                    <div>  <!-- Détails de la leçon -->
+                                        <dl>
+                                            <div>
+                                                <dt>Description</dt>
+                                                <dd>{{ lesson.description }}</dd> <!-- Assurez-vous d'adapter cela à la propriété correcte de votre entité Lesson -->
+                                            </div>
+                                            <div>
+                                                <dt>Content</dt>
+                                                <dd>h{{ lesson.contenu }} </dd> <!-- Assurez-vous d'adapter cela à la propriété correcte de votre entité Lesson -->
+                                            </div>
+                                            <div>
+                                                <dt>Reference ID</dt>
+                                                <dd>aaaaaaaaaaa</dd> <!-- Assurez-vous d'adapter cela à la propriété correcte de votre entité Lesson -->
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </details>
+                                {% endfor %}
+                            </section>
+                            
                             Contenu du profil
                         </div>
                     </div>

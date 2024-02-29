@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Cours;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * @extends ServiceEntityRepository<Cours>
  *
@@ -20,7 +20,19 @@ class CoursRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Cours::class);
     }
+    public function paginate($page, $limit)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->getQuery();
+        
+        $paginator = new Paginator($query);
+        $paginator
+            ->getQuery()
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
 
+        return $paginator;
+    }
 //    /**
 //     * @return Cours[] Returns an array of Cours objects
 //     */
